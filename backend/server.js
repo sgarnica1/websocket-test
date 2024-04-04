@@ -15,12 +15,10 @@ io.on("connection", (socket) => {
   console.log(socket.id);
 
   // Sends message
-  socket.emit("hello", "world");
-
-  // Receives message
-  socket.on("hello", (arg) => {
-    console.log(arg); // back
-  });
+  setInterval(() => {
+    const date = new Date()
+    socket.emit("notification", `Notification id ${date.getMilliseconds()}`);
+  }, 2000)
 });
 
 app.get("/", (req, res) => {
