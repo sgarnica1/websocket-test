@@ -12,8 +12,15 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-  console.log(socket);
   console.log(socket.id);
+
+  // Sends message
+  socket.emit("hello", "world");
+
+  // Receives message
+  socket.on("hello", (arg) => {
+    console.log(arg); // back
+  });
 });
 
 app.get("/", (req, res) => {
